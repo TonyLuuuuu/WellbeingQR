@@ -30,7 +30,8 @@ body {
         #000000 240deg 300deg, 
         #ffffff 300deg 360deg
     );
-    border: 5px solid #000;;
+    border: 5px solid #000;
+    transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 
 button {
