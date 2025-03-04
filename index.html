@@ -38,6 +38,7 @@
             font-size: 24px;
             color: white;
             text-align: center;
+            cursor: pointer;
         }
         .pointer {
             width: 0;
@@ -60,9 +61,8 @@
 <body>
     <div class="wheel-container">
         <div class="pointer"></div>
-        <div class="wheel" id="wheel">Spin Me!</div>
+        <div class="wheel" id="wheel" onclick="spinWheel()">Spin Me!</div>
     </div>
-    <button onclick="spinWheel()">Spin</button>
     <div class="result" id="result"></div>
 
     <script>
@@ -71,7 +71,8 @@
             const wheel = document.getElementById('wheel');
             const result = document.getElementById('result');
             let randomDegree = Math.floor(3600 + Math.random() * 360);
-            let chosenIndex = Math.floor(((randomDegree % 360) / 60));
+            let finalDegree = randomDegree % 360;
+            let chosenIndex = Math.floor((360 - finalDegree) / 60) % options.length;
             
             wheel.style.transition = 'transform 4s ease-out';
             wheel.style.transform = `rotate(${randomDegree}deg)`;
