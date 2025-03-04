@@ -30,7 +30,7 @@
                 orange 240deg 300deg,
                 purple 300deg 360deg
             );
-            transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            transition: transform 4s ease-out;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -67,15 +67,17 @@
 
     <script>
         const options = ["Red", "Yellow", "Green", "Blue", "Orange", "Purple"];
+        let currentRotation = 0;
         function spinWheel() {
             const wheel = document.getElementById('wheel');
             const result = document.getElementById('result');
             let randomDegree = Math.floor(3600 + Math.random() * 360);
-            let finalDegree = randomDegree % 360;
+            currentRotation += randomDegree;
+            let finalDegree = currentRotation % 360;
             let chosenIndex = Math.floor((360 - finalDegree) / 60) % options.length;
             
             wheel.style.transition = 'transform 4s ease-out';
-            wheel.style.transform = `rotate(${randomDegree}deg)`;
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
             
             setTimeout(() => {
                 alert(`Result: ${options[chosenIndex]}`);
