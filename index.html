@@ -3,16 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin the Wheel</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Wheel of Fortune</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            flex-direction: column;
+        }
+        .wheel-container {
+            position: relative;
+        }
+        .wheel {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 5px solid black;
+            background: conic-gradient(
+                red 0deg 60deg,
+                yellow 60deg 120deg,
+                green 120deg 180deg,
+                blue 180deg 240deg,
+                orange 240deg 300deg,
+                purple 300deg 360deg
+            );
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+        .pointer {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 30px solid black;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="wheel-container">
-            <div class="wheel" id="wheel"></div>
-        </div>
-        <button id="spinButton">Spin</button>
+    <div class="wheel-container">
+        <div class="pointer"></div>
+        <div class="wheel" id="wheel"></div>
     </div>
-    <script src="script.js"></script>
+    <button onclick="spinWheel()">Spin</button>
+
+    <script>
+        function spinWheel() {
+            const wheel = document.getElementById('wheel');
+            let randomDegree = Math.floor(3600 + Math.random() * 360);
+            wheel.style.transition = 'transform 3s ease-out';
+            wheel.style.transform = `rotate(${randomDegree}deg)`;
+        }
+    </script>
 </body>
 </html>
